@@ -1,0 +1,17 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Fundo circular -->
+  <circle cx="32" cy="32" r="32" fill="#E5E7EB"/>
+  
+  <!-- Escudo/Badge -->
+  <path d="M32 8L45 15V28C45 38 32 52 32 52C32 52 19 38 19 28V15L32 8Z" 
+        fill="#6B7280" 
+        stroke="#4B5563" 
+        stroke-width="1"/>
+  
+  <!-- Bola de futebol */
+  <circle cx="32" cy="28" r="8" fill="white" stroke="#4B5563" stroke-width="1"/>
+  
+  <!-- Padrão da bola */
+  <path d="M27 23L32 26L37 23L35 28L29 28Z" fill="#4B5563"/>
+  <path d="M32 22V34M26 25L38 31M38 25L26 31" stroke="#4B5563" stroke-width="0.5" opacity="0.5"/>
+</svg>
