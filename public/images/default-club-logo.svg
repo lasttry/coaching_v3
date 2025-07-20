@@ -8,10 +8,8 @@
         stroke="#4B5563" 
         stroke-width="1"/>
   
-  <!-- Bola de futebol */
   <circle cx="32" cy="28" r="8" fill="white" stroke="#4B5563" stroke-width="1"/>
   
-  <!-- Padrão da bola */
   <path d="M27 23L32 26L37 23L35 28L29 28Z" fill="#4B5563"/>
   <path d="M32 22V34M26 25L38 31M38 25L26 31" stroke="#4B5563" stroke-width="0.5" opacity="0.5"/>
 </svg>

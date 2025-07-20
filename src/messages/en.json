@@ -120,7 +120,8 @@
       "contactAdmin": "Contact the administrator to get access",
       "loading": "Loading clubs...",
       "selectButton": "Select",
-      "currentClub": "Current club"
+      "currentClub": "Current club",
+      "default": "Default"
     }
   },
   "clubRoles": {

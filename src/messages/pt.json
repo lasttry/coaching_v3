@@ -132,7 +132,8 @@
       "contactAdmin": "Contacte o administrador para obter acesso",
       "loading": "A carregar clubes...",
       "selectButton": "Selecionar",
-      "currentClub": "Clube atual"
+      "currentClub": "Clube atual",
+      "default": "por defeito"
     }
 
   },

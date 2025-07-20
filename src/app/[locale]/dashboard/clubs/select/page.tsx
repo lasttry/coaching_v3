@@ -5,6 +5,7 @@ import { auth } from '@/lib/auth';
 import { redirect } from 'next/navigation';
 import { AuthGuard } from '@/components/auth/AuthGuard';
 import ClubSelector from '@/components/clubs/ClubSelector';
+import ClubSelectorDebug from '@/components/clubs/ClubSelectorDebug';
 
 interface PageProps {
   params: Promise<{ locale: string }>;
@@ -38,7 +39,7 @@ export default async function ClubSelectPage({ params }: PageProps) {
                 <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
               </div>
             }>
-              <ClubSelector locale={locale} />
+              <ClubSelectorDebug locale={locale} />
             </Suspense>
           </div>
         </div>

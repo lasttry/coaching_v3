@@ -1,5 +1,4 @@
 // src/app/api/clubs/route.ts
-
 import { auth } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
 import { NextRequest, NextResponse } from 'next/server';
@@ -14,39 +13,41 @@ const createClubSchema = z.object({
 });
 
 // GET /api/clubs - Listar clubes (Admin apenas)
-export async function GET() {
-  try {
-    const session = await auth();
-    
-    if (!session?.user || session.user.role !== 'ADMIN') {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-    }
+export async function GET(req: Request) {
+  const session = await auth();
+  if (!session?.user?.id) {
+    return NextResponse.json({ error: "Not authenticated" }, { status: 401 });
+  }
+  const userId = session.user.id;
 
-    const clubs = await prisma.club.findMany({
-      include: {
-        seasons: {
-          where: { active: true },
-          orderBy: { createdAt: 'desc' },
-        },
+  // Buscar info do user (inclui o campo defaultClubId e role)
+  const user = await prisma.user.findUnique({
+    where: { id: userId },
+    select: { role: true, defaultClubId: true },
+  });
+
+  let clubs;
+  console.log(userId)
+  console.log(user);
+  console.log(user?.role);
+  if (user?.role === "ADMIN") {
+    clubs = await prisma.club.findMany();
+  } else {
+    clubs = await prisma.club.findMany({
+      where: {
         clubUsers: {
-          include: {
-            user: {
-              select: { id: true, name: true, email: true },
-            },
+          some: {
+            userId: userId,
           },
         },
-        _count: {
-          select: { clubUsers: true },
-        },
       },
-      orderBy: { createdAt: 'desc' },
     });
-
-    return NextResponse.json(clubs);
-  } catch (error) {
-    console.error('Error fetching clubs:', error);
-    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
   }
+
+  return NextResponse.json({
+    clubs,
+    defaultClubId: user?.defaultClubId || null,
+  });
 }
 
 // POST /api/clubs - Criar clube (Admin apenas)
